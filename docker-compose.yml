@@ -56,9 +56,9 @@ services:
       QUEUES: "periodic,emails,default"
       WORKERS_COUNT: 1
 
-  personal_expense_tracker_postgres:
-    image: postgres:15-alpine
-    container_name: personal_expense_tracker_postgres
+  personal_finance_postgres:
+    image: postgres:17-alpine
+    container_name: personal_finance_postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -67,7 +67,7 @@ services:
     ports:
       - "15432:5432"
     volumes:
-      - personal_expense_tracker_postgres_data:/var/lib/postgresql/data
+      - personal_finance_postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
       interval: 5s
@@ -79,5 +79,5 @@ volumes:
     name: redash_postgres_data
   redash_redis_data:
     name: redash_redis_data
-  personal_expense_tracker_postgres_data:
-    name: personal_expense_tracker_postgres_data
+  personal_finance_postgres_data:
+    name: personal_finance_postgres_data

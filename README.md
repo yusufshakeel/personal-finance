@@ -23,7 +23,7 @@ This is an open source personal expense tracking application.
 ### Clone the repository
 
 ```shell
-git clone https://github.com/yusufshakeel/personal-expense-tracker.git
+git clone https://github.com/yusufshakeel/personal-finance.git
 ```
 
 ### Setup the virtual environment
@@ -50,7 +50,9 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-### Start the docker containers
+### Create Redash database and tables.
+
+First time setup.
 
 ```shell
 docker compose run --rm server create_db
@@ -75,13 +77,40 @@ docker compose run --rm server create_db
 [2026-02-08 14:11:22,379][PID:1][INFO][alembic.runtime.migration] Running stamp_revision  -> db0aca1ebd32
 ```
 
-Now, run the following
+### Start docker containers
 
 ```shell
 docker compose up -d
 ```
 
+### Setup Redash
+
 Now, open [http://localhost:9000/setup](http://localhost:9000/setup) in your browser and setup Redash.
+
+Example:
+```text
+Admin Name: Admin
+Admin Email Address: admin@example.com
+Admin Password: root1234
+General Organization Name: Example Org
+```
+
+![redash-setup.png](docs/redash-setup.png)
+
+### Add a new data source in Redash
+
+After log in,
+- Go to Settings and Click "New Data Source" [http://localhost:9000/data_sources](http://localhost:9000/data_sources)
+- Select the Type: PostgreSQL
+- Set the Name=Personal Finance
+- Set the Host=host.docker.internal
+- Set the Port=15432
+- Set the User=personal_finance_user
+- Set the Password=personal_finance_password
+- Set the Database Name=personal_finance
+- Click the "Create" button
+
+![new-data-source.png](docs/new-data-source.png)
 
 ### Database migrations
 
