@@ -122,6 +122,10 @@ alembic upgrade head
 
 ## Force teardown
 
+> **WARNING!** 
+> 
+> Data will be lost. Backup database before proceeding.
+
 ```shell
 docker compose down --volumes --remove-orphans
 docker volume prune -f
