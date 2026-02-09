@@ -30,8 +30,14 @@ def upgrade() -> None:
         sa.Column("name", sa.String(length=64), nullable=False),
         sa.PrimaryKeyConstraint("id"),
     )
+    op.create_unique_constraint(
+        "uq_expense_categories_name",
+        "expense_categories",
+        ["name"]
+    )
 
 
 def downgrade() -> None:
     """Downgrade schema."""
+    op.drop_constraint("uq_expense_categories_name", "expense_categories", type_="unique")
     op.drop_table("expense_categories")
