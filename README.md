@@ -92,7 +92,7 @@ Example:
 Admin Name: Admin
 Admin Email Address: admin@example.com
 Admin Password: root1234
-General Organization Name: Example Org
+General Organization Name: Default
 ```
 
 ![redash-setup.png](docs/redash-setup.png)

@@ -28,8 +28,9 @@ def upgrade() -> None:
             server_default=sa.text("uuid_generate_v4()"),
             nullable=False,
         ),
-        sa.Column("name", sa.String(length=64), nullable=False),
         sa.Column("category_id", sa.UUID(), nullable=False),
+        sa.Column("name", sa.String(length=64), nullable=False),
+        sa.Column("description", sa.String(length=300), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
 
