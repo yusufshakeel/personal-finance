@@ -141,7 +141,7 @@ def downgrade() -> None:
     """Downgrade schema."""
     connection = op.get_bind()
 
-    category_ids = [item["id"] for item in DEFAULT_EXPENSE_CATEGORIES]
+    category_ids = [category["id"] for category in DEFAULT_EXPENSE_CATEGORIES]
 
     connection.execute(
         sa.text(

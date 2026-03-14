@@ -1,8 +1,8 @@
-"""create table expense_categories
+"""create table payment_modes
 
-Revision ID: e0a41de1a21a
-Revises: 7f747d2be998
-Create Date: 2026-02-09 10:08:15.452223
+Revision ID: 2057ceabaacb
+Revises: f7e94b679e9d
+Create Date: 2026-03-14 15:43:58.761506
 
 """
 from typing import Sequence, Union
@@ -11,8 +11,8 @@ from alembic import op
 import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
-revision: str = 'e0a41de1a21a'
-down_revision: Union[str, Sequence[str], None] = '7f747d2be998'
+revision: str = '2057ceabaacb'
+down_revision: Union[str, Sequence[str], None] = 'f7e94b679e9d'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -20,7 +20,7 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     """Upgrade schema."""
     op.create_table(
-        "expense_categories",
+        "payment_modes",
         sa.Column(
             "id",
             sa.UUID(),
@@ -31,13 +31,13 @@ def upgrade() -> None:
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_unique_constraint(
-        "uq_expense_categories_name",
-        "expense_categories",
+        "uq_payment_modes_name",
+        "payment_modes",
         ["name"]
     )
 
 
 def downgrade() -> None:
     """Downgrade schema."""
-    op.drop_constraint("uq_expense_categories_name", "expense_categories", type_="unique")
-    op.drop_table("expense_categories")
+    op.drop_constraint("uq_payment_modes_name", "payment_modes", type_="unique")
+    op.drop_table("payment_modes")

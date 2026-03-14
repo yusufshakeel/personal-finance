@@ -1,4 +1,4 @@
-"""create table expense subcategories
+"""create table expense_subcategories
 
 Revision ID: 6ffa7a6749b6
 Revises: e0a41de1a21a
