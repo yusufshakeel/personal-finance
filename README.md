@@ -1,4 +1,4 @@
-# personal-expense-tracker
+# personal-finance
 
 This is an open source personal expense tracking application.
 
