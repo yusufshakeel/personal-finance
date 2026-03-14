@@ -711,6 +711,21 @@ DEFAULT_EXPENSE_SUBCATEGORIES = [
         "id": "0d5c904a-d3ec-426a-bbef-9cb04e7259d3",
         "category_id": "ed73c774-54d5-46a5-88df-a49eea5d99e9",
         "name": "Others"
+    },
+    {
+        "id": "c89ed3c2-d25e-4e23-b32a-12f1f832db93",
+        "category_id": "7c6b012d-c086-4fea-a222-ac86665a2a1d",
+        "name": "Household Allowance"
+    },
+    {
+        "id": "15741738-1233-4e0d-b824-bb6426ccc72a",
+        "category_id": "7c6b012d-c086-4fea-a222-ac86665a2a1d",
+        "name": "Personal Allowance"
+    },
+    {
+        "id": "2e6ecc90-6999-4a74-a4d3-33c47bbfa4fe",
+        "category_id": "7c6b012d-c086-4fea-a222-ac86665a2a1d",
+        "name": "Others"
     }
 ]
 

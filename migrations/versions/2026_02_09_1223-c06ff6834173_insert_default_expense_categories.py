@@ -120,6 +120,10 @@ DEFAULT_EXPENSE_CATEGORIES = [
     {
         "id": "ed73c774-54d5-46a5-88df-a49eea5d99e9",
         "name": "Vehicle Maintenances"
+    },
+    {
+        "id": "7c6b012d-c086-4fea-a222-ac86665a2a1d",
+        "name": "Allowance"
     }
 ]
 
