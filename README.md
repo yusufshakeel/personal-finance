@@ -1,6 +1,6 @@
 # personal-finance
 
-This is an open source personal expense tracking application.
+This is an open source personal finance application.
 
 ## Table of Content
 
