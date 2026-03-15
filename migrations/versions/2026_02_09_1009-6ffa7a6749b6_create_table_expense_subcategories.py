@@ -10,7 +10,6 @@ from typing import Sequence, Union
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
 revision: str = '6ffa7a6749b6'
 down_revision: Union[str, Sequence[str], None] = 'e0a41de1a21a'
@@ -43,8 +42,19 @@ def upgrade() -> None:
         ondelete="CASCADE"
     )
 
+    op.create_unique_constraint(
+        "uq_expense_subcategories_category_id_id",
+        "expense_subcategories",
+        ["category_id", "id"],
+    )
+
 
 def downgrade() -> None:
     """Downgrade schema."""
+    op.drop_constraint(
+        "uq_expense_subcategories_category_id_id",
+        "expense_subcategories",
+        type_="unique",
+    )
     op.drop_constraint("fk_category_id_expense_subcategories", "expense_subcategories", type_="foreignkey")
     op.drop_table("expense_subcategories")

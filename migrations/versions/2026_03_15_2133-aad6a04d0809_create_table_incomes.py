@@ -99,6 +99,12 @@ def upgrade() -> None:
         ["subcategory_id"],
     )
 
+    op.create_index(
+        "ix_incomes_category_income_date",
+        "incomes",
+        ["category_id", "income_date"],
+    )
+
     op.create_foreign_key(
         "fk_category_id_incomes",
         "incomes",
@@ -109,11 +115,11 @@ def upgrade() -> None:
     )
 
     op.create_foreign_key(
-        "fk_subcategory_id_incomes",
+        "fk_incomes_category_subcategory",
         "incomes",
         "income_subcategories",
-        ["subcategory_id"],
-        ["id"],
+        ["category_id", "subcategory_id"],
+        ["category_id", "id"],
         ondelete="CASCADE",
     )
 
@@ -126,6 +132,7 @@ def downgrade() -> None:
     op.drop_index("ix_incomes_subcategory_id", table_name="incomes")
     op.drop_index("ix_incomes_category_id", table_name="incomes")
     op.drop_index("ix_incomes_income_date", table_name="incomes")
+    op.drop_index("ix_incomes_category_income_date", table_name="incomes")
     op.drop_constraint("fk_category_id_incomes", "incomes", type_="foreignkey")
-    op.drop_constraint("fk_subcategory_id_incomes", "incomes", type_="foreignkey")
+    op.drop_constraint("fk_incomes_category_subcategory", "incomes", type_="foreignkey")
     op.drop_table("incomes")
