@@ -153,5 +153,5 @@ def downgrade() -> None:
             DELETE FROM expense_categories
             WHERE id IN :ids
             """
-        ).bindparams(ids=tuple(category_ids))  # Convert to tuple for the IN clause
+        ).bindparams(ids=tuple(category_ids))
     )
