@@ -17,6 +17,7 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 DEFAULT_TAGS = [
+    {"id": "986e0f8e-928d-489e-b90e-4064b9ef6430", "name": "Others"},
     {"id": "84884378-50cb-40de-8758-7742dc6b15e8", "name": "Amazon Prime"},
     {"id": "85ff5b32-059f-4536-9da5-a139dfdcc484", "name": "Hotstar"},
     {"id": "35dd9780-0be9-43fe-8fea-7b3cd5563305", "name": "Netflix"},
