@@ -35,24 +35,7 @@ def upgrade() -> None:
             sa.CheckConstraint("cent_amount >= 0", name="ck_incomes_cent_amount_positive"),
             nullable=False,
         ),
-        sa.Column(
-            "currency_precision",
-            sa.SmallInteger(),
-            sa.CheckConstraint(
-                "currency_precision >= 0 AND currency_precision <= 3",
-                name="ck_incomes_currency_precision_range",
-            ),
-            nullable=False,
-        ),
-        sa.Column(
-            "currency",
-            sa.String(length=3),
-            sa.CheckConstraint(
-                "currency ~ '^[A-Z]{3}$'",
-                name="ck_incomes_currency_format",
-            ),
-            nullable=False,
-        ),
+        sa.Column("currency_code", sa.String(length=3), nullable=False),
         sa.Column("category_id", sa.UUID(), nullable=False),
         sa.Column("subcategory_id", sa.UUID(), nullable=False),
         sa.Column("tags", sa.ARRAY(sa.UUID()), nullable=False),
@@ -123,6 +106,15 @@ def upgrade() -> None:
         ondelete="CASCADE",
     )
 
+    op.create_foreign_key(
+        "fk_currency_code_incomes",
+        "incomes",
+        "currencies",
+        ["currency_code"],
+        ["code"],
+        ondelete="CASCADE",
+    )
+
 
 def downgrade() -> None:
     """Downgrade schema."""
@@ -133,6 +125,8 @@ def downgrade() -> None:
     op.drop_index("ix_incomes_category_id", table_name="incomes")
     op.drop_index("ix_incomes_income_date", table_name="incomes")
     op.drop_index("ix_incomes_category_income_date", table_name="incomes")
+    op.drop_constraint("ck_incomes_cent_amount_positive", "incomes", type_="check")
     op.drop_constraint("fk_category_id_incomes", "incomes", type_="foreignkey")
     op.drop_constraint("fk_incomes_category_subcategory", "incomes", type_="foreignkey")
+    op.drop_constraint("fk_currency_code_incomes", "incomes", type_="foreignkey")
     op.drop_table("incomes")
