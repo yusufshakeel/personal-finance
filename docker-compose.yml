@@ -74,6 +74,34 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/mathesar
     restart: unless-stopped
 
+#  directus:
+#    image: directus/directus:11
+#    depends_on:
+#      - postgres
+#    ports:
+#      - "8055:8055"
+#    environment:
+#      KEY: "randomkey"
+#      SECRET: "supersecret"
+#
+#      DB_CLIENT: "pg"
+#      DB_HOST: "host.docker.internal"
+#      DB_PORT: "5432"
+#      DB_DATABASE: "personal_finance"
+#      DB_USER: "postgres"
+#      DB_PASSWORD: "postgres"
+#
+#      ADMIN_EMAIL: "admin@example.com"
+#      ADMIN_PASSWORD: "root1234"
+
+  appsmith:
+    image: appsmith/appsmith-ce:v1.97
+    restart: unless-stopped
+    ports:
+      - "9002:80"
+    volumes:
+      - ./appsmith:/appsmith-stacks
+
 volumes:
   postgres_data:
   redis_data:
