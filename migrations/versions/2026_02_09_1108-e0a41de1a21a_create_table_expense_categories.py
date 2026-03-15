@@ -1,7 +1,7 @@
 """create table expense_categories
 
 Revision ID: e0a41de1a21a
-Revises: 648529b6f311
+Revises: 9c68c398ba2b
 Create Date: 2026-02-09 11:08:15.452223
 
 """
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision: str = 'e0a41de1a21a'
-down_revision: Union[str, Sequence[str], None] = '648529b6f311'
+down_revision: Union[str, Sequence[str], None] = '9c68c398ba2b'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
