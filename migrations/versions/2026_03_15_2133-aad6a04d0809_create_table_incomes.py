@@ -56,6 +56,8 @@ def upgrade() -> None:
         sa.Column("category_id", sa.UUID(), nullable=False),
         sa.Column("subcategory_id", sa.UUID(), nullable=False),
         sa.Column("tags", sa.ARRAY(sa.UUID()), nullable=False),
+        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column("updated_at", sa.DateTime(timezone=True), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
 
@@ -70,6 +72,19 @@ def upgrade() -> None:
         "incomes",
         ["tags"],
         postgresql_using="gin",
+    )
+
+    op.create_index(
+        "ix_incomes_created_at",
+        "incomes",
+        ["created_at"],
+    )
+
+    op.create_index(
+        "ix_incomes_updated_at_not_null",
+        "incomes",
+        ["updated_at"],
+        postgresql_where=sa.text("updated_at IS NOT NULL"),
     )
 
     op.create_index(
@@ -105,6 +120,8 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     """Downgrade schema."""
+    op.drop_index("ix_incomes_updated_at_not_null", table_name="incomes")
+    op.drop_index("ix_incomes_created_at", table_name="incomes")
     op.drop_index("ix_incomes_tags", table_name="incomes")
     op.drop_index("ix_incomes_subcategory_id", table_name="incomes")
     op.drop_index("ix_incomes_category_id", table_name="incomes")
