@@ -1,0 +1,3 @@
+CREATE DATABASE redash;
+CREATE DATABASE personal_finance;
+CREATE DATABASE mathesar;
